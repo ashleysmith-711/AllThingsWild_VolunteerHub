@@ -9,12 +9,44 @@
     align-self: flex-start;
     display: flex;
 
+    .h1Container {
+        align-self: flex-end;
+        width: 100%;
+        padding: 1em;
+    }
+
     h1 {
         color: v.$white;
         text-shadow: 4px 4px 4px rgba(0,0,0,0.6);
-
-        align-self: flex-end;
-        margin: 0 0 .25em 1em;
         font-size: 4em;
+
+        @media screen and (max-width: 768px) {
+            font-size: 3em;
+        }
+    }
+}
+
+.intro {
+    background-color: v.$grey;
+    border-radius: 1em;
+    margin-top: 1em;
+    max-width: 800px;
+    display: flex;
+
+    p {
+        padding: 2em;
+        line-height: 2em;
+    }
+
+    button {
+        width: 150px;
+    }
+
+    .buttonContainer {
+        background-image: url('/img/animal-pattern.png');
+        background-size: cover;
+        border-radius: 0 1em 1em 0;
+        width: 100%;
+        text-align: center;
     }
 }

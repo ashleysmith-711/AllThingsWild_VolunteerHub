@@ -1,4 +1,7 @@
+@use '../../variables' as v;
+
 .footer {
-    background-color: black;
+    background-color: v.$charcoal;
     color: white;
+    padding: 1em;
 }
