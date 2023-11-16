@@ -1,0 +1,29 @@
+@use '../../variables.scss' as v;
+
+.header {
+    background-color: v.$blue;
+    padding: 1em 1.5em;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    position: sticky; 
+	  top: 0;
+    height: 100px;
+    margin-bottom: 100px;
+    align-items: center;
+    
+    li {
+      list-style: none;
+      display: inline-flex;
+      margin: 1em;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+.logo {
+    width: 200px;   
+}
