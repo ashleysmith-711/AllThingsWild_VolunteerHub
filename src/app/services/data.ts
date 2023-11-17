@@ -23,7 +23,6 @@ export const getShifts = async (): Promise<Shift[]> => {
 
 export const signUpForShift = async (name: string, shiftTime: ShiftTimes, date: string) => {
   const url = `${DEV_URL}/all-shifts`;
-  console.log('signing up for date', date);
   const res = await fetch(url, {
     method: 'POST',
     headers: {

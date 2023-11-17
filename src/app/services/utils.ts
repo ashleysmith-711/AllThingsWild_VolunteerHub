@@ -22,3 +22,4 @@ export const getShiftReadableTime = (shift: ShiftTimes) => {
 export const filterShiftsToDate = ((shifts: Shift[], date = new Date().toLocaleDateString('en-CA')) => {
     return shifts?.filter(shift => shift.date === date);
 });
+ 

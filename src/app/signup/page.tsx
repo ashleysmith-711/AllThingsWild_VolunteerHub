@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler, useState } from 'react';
 import styles from './Signup.module.scss';
 import { ShiftTimes } from '../types';
-import { signUpForShift } from '../services/fetchData';
+import { signUpForShift } from '../services/data';
 
 const Signup = () => {
   const [name, setName] = useState<string>("");
@@ -14,9 +14,9 @@ const Signup = () => {
     const newValue = (e.target as HTMLInputElement).value;
     setName(newValue);
   }
+
   const handleDateChange = (e: ChangeEvent) => {
     const newValue = (e.target as HTMLInputElement).value;
-    console.log('newValue date', newValue);
     setDate(newValue);
   }
 
@@ -33,8 +33,6 @@ const Signup = () => {
 
   const handleSubmit: FormEventHandler =  async (event: FormEvent) => {
     setPending(true)
-    debugger;
-    console.log('name, shiftTime, date', name, shiftTime, date);
     const success = await signUpForShift(name, shiftTime, date);
     success && alert('You have signed up for a shift!');
     success && clearForm();

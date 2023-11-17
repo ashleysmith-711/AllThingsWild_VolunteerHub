@@ -1,6 +1,6 @@
 
 import styles from './Schedule.module.scss';
-import { getShifts } from '../services/fetchData';
+import { getShifts } from '../services/data';
 import { Shift, ShiftTimes, VolunteerByTime } from '../types';
 import Loading from '../_components/Loading';
 import { filterShiftsToDate } from '../services/utils';
@@ -31,9 +31,7 @@ const getVolunteersByTime = (shifts: Shift[]) => {
 
 const Schedule = async () => {
     const allShifts = await getShifts();
-    console.log('___allShifts', allShifts)
     const shifts = filterShiftsToDate(allShifts);
-    // TODO: Build a date picker to view schedule for different dates 
 
     const byTime = shifts ? getVolunteersByTime(shifts) : null;
     const date = new Date().toLocaleDateString('en-US');

@@ -27,3 +27,39 @@
 .logo {
     width: 200px;   
 }
+
+.burgerMenuIconContainer {
+  width: 30px;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .burgerMenuIconContainer {
+    display: flex;
+  }
+  .topNav {
+    display: none;
+  }
+}
+
+.sideNav {
+  position: fixed;
+  top: 100px;
+  background-color: v.$white;
+  width: 100%;
+  transition: 0.5s ease-in-out;
+
+  a {
+    color: v.$blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: v.$yellow;
+  }
+
+  li {
+    list-style: none;
+    padding: .5em;
+  }
+}
