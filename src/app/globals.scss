@@ -5,6 +5,10 @@ body {
   color: v.$charcoal;
 }
 
+main {
+  width: 100%;
+}
+
 .grid-wrapper {
   display: grid;
   grid-template-rows: 100px 1fr 60px;
@@ -16,13 +20,16 @@ body {
   margin: 0 auto;
 }
 
-button {
+button, .fake-button {
   background-color: v.$green;
   color: v.$white;
   border-color: v.$charcoal;
   padding: 1em;
   border-radius: 0.5em;
   margin: 1em;
+  justify-content: center;
+  display: inline-block;
+  text-decoration: none;
 }
 
 /* Reset CSS - source: https://www.joshwcomeau.com/css/custom-css-reset/ */

@@ -1,0 +1,38 @@
+@use '../variables' as v;
+
+.container {
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em auto;
+    background-color: v.$grey;
+    padding: 2em;
+    height: auto;
+    border-radius: 1em;
+    
+
+    input:not([type=radio]) {
+        margin: .5em 0;
+        width: 320px;
+        padding: .5em;
+        border-radius: 6px;
+        border: none;
+    }
+
+    fieldset {
+        width: 320px;
+    }
+
+    button {
+        width: 320px;
+        margin-top: 2em;
+    }
+}
+
+
+.title {
+    margin-top: 1em;
+    text-align: center;
+    color: v.$green;
+}

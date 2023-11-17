@@ -5,7 +5,9 @@ import styles from './Header.module.scss'
 const Header = (): JSX.Element => {
     return (
         <header className={styles.header}>
-            <img src="/assets/ATW_Logo.svg" alt="All Things Wild Logo" className={styles.logo} />
+            <a href="/">
+                <img src="/assets/ATW_Logo.svg" alt="All Things Wild Logo" className={styles.logo} />
+            </a>
             <TopNav />
             {/* TODO: Mobile Nav */}
         </header>

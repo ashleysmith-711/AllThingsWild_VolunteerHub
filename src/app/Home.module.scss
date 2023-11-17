@@ -38,15 +38,19 @@
         line-height: 2em;
     }
 
-    button {
+    a {
         width: 150px;
+        text-align: center;
     }
 
     .buttonContainer {
         background-image: url('/img/animal-pattern.png');
         background-size: cover;
         border-radius: 0 1em 1em 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        text-align: center;
     }
 }
