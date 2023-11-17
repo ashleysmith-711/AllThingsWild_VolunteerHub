@@ -6,7 +6,7 @@ import { signUpForShift } from '../services/fetchData';
 
 const Signup = () => {
   const [name, setName] = useState<string>("");
-  const [shift, setShift] = useState<ShiftTimes>(ShiftTimes.Morning);
+  const [shiftTime, setShiftTime] = useState<ShiftTimes>(ShiftTimes.Morning);
   const [date, setDate] = useState<string>(new Date().toLocaleDateString('en-CA'));
   const [pending, setPending] = useState(false);
 
@@ -21,18 +21,18 @@ const Signup = () => {
 
   const handleShiftChange = (shift: ShiftTimes) => {
     const newValue = shift;
-    setShift(newValue);
+    setShiftTime(newValue);
   }
 
   const clearForm = () => {
     setName('');
     setDate('');
-    setShift(ShiftTimes.Morning);
+    setShiftTime(ShiftTimes.Morning);
   }
 
   const handleSubmit: FormEventHandler =  async (event: FormEvent) => {
     setPending(true)
-    const success = await signUpForShift(name, shift, date);
+    const success = await signUpForShift(name, shiftTime, date);
     success && alert('You have signed up for a shift!');
     success && clearForm();
   };
@@ -51,21 +51,21 @@ const Signup = () => {
 
             <div>
               <label>
-                <input type="radio" id="morning" name="shift" value="0" checked={shift === 0} onChange={() => handleShiftChange(0)} />
+                <input type="radio" id="morning" name="shift" value="0" checked={shiftTime === 0} onChange={() => handleShiftChange(0)} />
                 &nbsp;Morning (8am - 11am)
               </label>
             </div>
 
             <div>
               <label>
-                <input type="radio" id="afternoon" name="shift" value="1" checked={shift === 1} onChange={() => handleShiftChange(1)} />
+                <input type="radio" id="afternoon" name="shift" value="1" checked={shiftTime === 1} onChange={() => handleShiftChange(1)} />
                 &nbsp;Afternoon (11am - 2pm)
               </label>
             </div>
 
             <div>
               <label>
-                <input type="radio" id="evening" name="shift" value="2" checked={shift === 2} onChange={() => handleShiftChange(2)} />
+                <input type="radio" id="evening" name="shift" value="2" checked={shiftTime === 2} onChange={() => handleShiftChange(2)} />
                 &nbsp;Evening (2pm - 5pm)
               </label>
             </div>

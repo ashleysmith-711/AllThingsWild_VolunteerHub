@@ -18,8 +18,6 @@ export enum ShiftTimes {
 }
 
 export type Shift = {
-    id: number,
-    volunteerId: number,
     name: string,
     date: string, // date string type??
     shiftTime: ShiftTimes
