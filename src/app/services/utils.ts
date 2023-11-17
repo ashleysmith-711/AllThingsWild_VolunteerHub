@@ -22,7 +22,3 @@ export const getShiftReadableTime = (shift: ShiftTimes) => {
 export const filterShiftsToDate = ((shifts: Shift[], date = new Date().toLocaleDateString('en-CA')) => {
     return shifts?.filter(shift => shift.date === date);
 });
-
-export const filterShiftsToUser = ((shifts: Shift[], id: number) => {
-    return shifts?.filter(shift => shift.volunteerId === id);
-})
