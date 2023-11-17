@@ -1,7 +1,6 @@
 import { Shift, ShiftTimes, Volunteer } from '../types';
 
 const DEV_URL = 'http://localhost:8000';
-const PROD_URL = 'TODO...';
 
 export const getVolunteers = async (): Promise<Volunteer[]> => {
     const res = await fetch(`${DEV_URL}/volunteers`);
@@ -22,8 +21,9 @@ export const getShifts = async (): Promise<Shift[]> => {
     return res.json();
 }
 
-export const signUpForShift = async (name: string, shiftTime: ShiftTimes, date: string /** new Date().toLocaleDateString('en-CA') */) => {
+export const signUpForShift = async (name: string, shiftTime: ShiftTimes, date: string) => {
   const url = `${DEV_URL}/all-shifts`;
+  console.log('signing up for date', date);
   const res = await fetch(url, {
     method: 'POST',
     headers: {

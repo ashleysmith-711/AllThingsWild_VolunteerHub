@@ -31,7 +31,7 @@ const getVolunteersByTime = (shifts: Shift[]) => {
 
 const Schedule = async () => {
     const allShifts = await getShifts();
-    
+    console.log('___allShifts', allShifts)
     const shifts = filterShiftsToDate(allShifts);
     // TODO: Build a date picker to view schedule for different dates 
 

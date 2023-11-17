@@ -31,4 +31,17 @@
     padding: .5em;
     margin-top: 6px;
     text-align: center;
-  }
+}
+
+.dateChanger {
+    margin: 1em auto;
+    text-align: center;
+    width: 400px;
+
+    input {
+        padding: .25em;
+        border-radius: 6px;
+        border: 1px solid v.$charcoal;
+        margin-bottom: 1em;
+    }
+}

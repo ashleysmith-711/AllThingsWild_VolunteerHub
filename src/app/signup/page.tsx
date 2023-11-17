@@ -16,6 +16,7 @@ const Signup = () => {
   }
   const handleDateChange = (e: ChangeEvent) => {
     const newValue = (e.target as HTMLInputElement).value;
+    console.log('newValue date', newValue);
     setDate(newValue);
   }
 
@@ -32,6 +33,8 @@ const Signup = () => {
 
   const handleSubmit: FormEventHandler =  async (event: FormEvent) => {
     setPending(true)
+    debugger;
+    console.log('name, shiftTime, date', name, shiftTime, date);
     const success = await signUpForShift(name, shiftTime, date);
     success && alert('You have signed up for a shift!');
     success && clearForm();
