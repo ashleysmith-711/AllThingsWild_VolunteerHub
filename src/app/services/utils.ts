@@ -3,13 +3,13 @@ import { Shift, ShiftTimes } from "../types";
 export const getShiftReadableTime = (shift: ShiftTimes) => {
     let shiftTime = '';
     switch(shift) {
-        case 0:
+        case 'morning':
             shiftTime = '8 AM - 11 AM'
             break;
-        case 1:
+        case 'afternoon':
             shiftTime = '11 AM - 2 PM';
             break;
-        case 2:
+        case 'evening':
             shiftTime = '2 PM - 5 PM';
             break;
         default:
@@ -19,7 +19,9 @@ export const getShiftReadableTime = (shift: ShiftTimes) => {
       return shiftTime
 }
 
-export const filterShiftsToDate = ((shifts: Shift[], date = new Date().toLocaleDateString('en-CA')) => {
-    return shifts?.filter(shift => shift.date === date);
+export const filterShiftsToDate = ((shifts: Shift[], date = new Date()) => {
+    return shifts;
+    // TODO add back filter, might have to round date to midnight
+    // ?.filter(shift => shift.date === date);
 });
  

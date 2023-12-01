@@ -6,21 +6,9 @@ import Loading from '../_components/Loading';
 import { filterShiftsToDate } from '../services/utils';
 import DailyScheduleSection from './DailyScheduleSection';
 
-type TimeOptions = 'morning' | 'afternoon' | 'evening';
-const getKey = (time: ShiftTimes): TimeOptions => {
-    let key: TimeOptions = 'morning';
-    if (time === 1) {
-        key = 'afternoon';
-    } else if (time === 2) {
-        key = 'evening';
-    }
-    return key;
-}
-
 const getVolunteersByTime = (shifts: Shift[]) => {
     return shifts.reduce((acc: VolunteerByTime, shift: Shift) => {
-        const key = getKey(shift.shiftTime);
-        acc[key].push(shift.name)
+        acc[shift.shiftTime].push(shift.name)
         return acc;
     }, {
         morning: [],
@@ -34,7 +22,8 @@ const Schedule = async () => {
     const shifts = filterShiftsToDate(allShifts);
 
     const byTime = shifts ? getVolunteersByTime(shifts) : null;
-    const date = new Date().toLocaleDateString('en-US');
+    const date = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
     const heading = `Today's Schedule (${date})`;
     return (
         <main className={`constrict-content`}>

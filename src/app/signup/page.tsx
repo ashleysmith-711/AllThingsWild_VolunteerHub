@@ -1,78 +1,119 @@
 'use client'
-import { ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler, useState } from 'react';
 import styles from './Signup.module.scss';
 import { ShiftTimes } from '../types';
-import { signUpForShift } from '../services/data';
+import { Controller, useForm, SubmitHandler } from "react-hook-form"
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+// import { signUpForShift } from '../services/data';
+
+
+type FormValues = {
+  name: string
+  email: string
+  shiftTime: ShiftTimes
+  shiftDate: Date
+}
 
 const Signup = () => {
-  const [name, setName] = useState<string>("");
-  const [shiftTime, setShiftTime] = useState<ShiftTimes>(ShiftTimes.Morning);
-  const [date, setDate] = useState<string>(new Date().toLocaleDateString('en-CA'));
-  const [pending, setPending] = useState(false);
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      name: '',
+      email: '',
+      shiftTime: ShiftTimes.Morning,
+      shiftDate: new Date(),
+    }
+  })
 
-  const handleNameChange = (e: ChangeEvent) => {
-    const newValue = (e.target as HTMLInputElement).value;
-    setName(newValue);
+
+  const processForm: SubmitHandler<FormValues> = (data) => {
+
+
+    console.log('PROCESSED FORM! Heres the data:', data);
   }
 
-  const handleDateChange = (e: ChangeEvent) => {
-    const newValue = (e.target as HTMLInputElement).value;
-    setDate(newValue);
-  }
-
-  const handleShiftChange = (shift: ShiftTimes) => {
-    const newValue = shift;
-    setShiftTime(newValue);
-  }
-
-  const clearForm = () => {
-    setName('');
-    setDate('');
-    setShiftTime(ShiftTimes.Morning);
-  }
-
-  const handleSubmit: FormEventHandler =  async (event: FormEvent) => {
-    setPending(true)
-    const success = await signUpForShift(name, shiftTime, date);
-    success && alert('You have signed up for a shift!');
-    success && clearForm();
-  };
-
+  // console.log('name', watch("name")); // watch input value by passing the name of it
+  // console.log('email', watch("email"));
+  console.log(watch("shiftTime"));
+  // console.log(watch("shiftDate"));
+  console.log('errors?', errors);
   return (
     <main className="constrict-content">
       <h1 className={styles.title}>Signup Form</h1>
       <div className={styles.container}>
-        <form>
-          <div>
-            <input type="text" placeholder="Full Name" onChange={handleNameChange} value={name}/>
-          </div>
-          <input type="date" onChange={handleDateChange} value={date}/>
+        <form onSubmit={handleSubmit(processForm)}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            {...register("name", { required: "Name is required" })} />
+          {errors.name?.message && <p className={styles.error}>*&nbsp;Name is required</p>}
+
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email")} />
+          {errors.email?.message && <p className={styles.error}>*&nbsp;Email is required</p>}
+
+          <Controller
+            name="shiftDate"
+            control={control}
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Select date"
+                onChange={(date: Date) => field.onChange(date)}
+                selected={field.value}
+              />
+            )}
+          />
+          {errors.shiftDate && <p>{errors.shiftDate.message}</p>}
+          
           <fieldset>
             <legend>Select a Shift:</legend>
-
-            <div>
-              <label>
-                <input type="radio" id="morning" name="shift" value="0" checked={shiftTime === 0} onChange={() => handleShiftChange(0)} />
-                &nbsp;Morning (8am - 11am)
-              </label>
-            </div>
-
-            <div>
-              <label>
-                <input type="radio" id="afternoon" name="shift" value="1" checked={shiftTime === 1} onChange={() => handleShiftChange(1)} />
-                &nbsp;Afternoon (11am - 2pm)
-              </label>
-            </div>
-
-            <div>
-              <label>
-                <input type="radio" id="evening" name="shift" value="2" checked={shiftTime === 2} onChange={() => handleShiftChange(2)} />
-                &nbsp;Evening (2pm - 5pm)
-              </label>
-            </div>
+            <Controller
+                    name="shiftTime"
+                    control={control}
+                    defaultValue={ShiftTimes.Morning}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="radio"
+                                value="morning"
+                                id="morning"
+                                checked={field.value === 'morning'}
+                            />
+                            <label htmlFor="morning">&nbsp;Morning (8am - 11am)</label>
+                          <br/>
+                            <input
+                                {...field}
+                                type="radio"
+                                value="afternoon"
+                                id="afternoon"
+                                checked={field.value === 'afternoon'}
+                            />
+                            <label htmlFor="afternoon">&nbsp;Afternoon  (11am - 2pm)</label>
+                            <br/>
+                            <input
+                                {...field}
+                                type="radio"
+                                value="evening"
+                                id="evening"
+                                checked={field.value === 'evening'}
+                            />
+                            <label htmlFor="evening">&nbsp;Evening (2pm - 5pm)</label>
+                        </div>
+                    )}
+                />
           </fieldset>
+        
+          <input type="submit" className={`fake-button ${Object.keys(errors).length > 0 ? styles.disabledBtn : ''}`} />
         </form>
-        <button type="submit" onClick={handleSubmit} disabled={pending}>Add Shift</button>
       </div>
 
     </main>

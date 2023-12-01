@@ -12,13 +12,13 @@ export type VolunteerByTime = {
 }
 
 export enum ShiftTimes {
-    Morning,
-    Afternoon,
-    Evening
+    Morning = "morning",
+    Afternoon = "afternoon",
+    Evening = "evening"
 }
 
 export type Shift = {
     name: string,
-    date: string, // date string type??
+    date: Date,
     shiftTime: ShiftTimes
 }

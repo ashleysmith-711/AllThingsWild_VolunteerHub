@@ -21,22 +21,22 @@ export const getShifts = async (): Promise<Shift[]> => {
     return res.json();
 }
 
-export const signUpForShift = async (name: string, shiftTime: ShiftTimes, date: string) => {
-  const url = `${DEV_URL}/all-shifts`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "name": name,
-      "shiftTime": shiftTime,
-      "date": date
-    })
-  });
+// export const signUpForShift = async (name: string, shiftTime: ShiftTimes, date: string) => {
+//   const url = `${DEV_URL}/add-shift`;
+//   const res = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       "name": name,
+//       "shiftTime": shiftTime,
+//       "date": date
+//     })
+//   });
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch shifts')
-  }
-  return "success"
-}
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch shifts')
+//   }
+//   return "success"
+// }
