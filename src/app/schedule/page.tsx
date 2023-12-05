@@ -18,18 +18,18 @@ const getVolunteersByTime = (shifts: Shift[]) => {
 }
 
 const Schedule = async () => {
-    const allShifts = await getShifts();
-    const shifts = filterShiftsToDate(allShifts);
+    // const allShifts: Shift[] = await getShifts();
+    // const shifts = filterShiftsToDate(allShifts);
 
-    const byTime = shifts ? getVolunteersByTime(shifts) : null;
-    const date = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    // const byTime = shifts ? getVolunteersByTime(shifts) : null;
+    // const date = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-    const heading = `Today's Schedule (${date})`;
+    // const heading = `Today's Schedule (${date})`;
     return (
         <main className={`constrict-content`}>
-            <h1 className={styles.title}>{heading}</h1>
-
-            {!byTime && <Loading />}
+            {/* <h1 className={styles.title}>{heading}</h1> */}
+            <h3>Coming Soon...</h3>
+            {/* {!byTime && <Loading />}
             {byTime && <div className={styles.container}>
                 <DailyScheduleSection 
                     imageUrl='/img/racoons-wink.jpeg'
@@ -50,7 +50,7 @@ const Schedule = async () => {
                     volunteers={byTime.evening}
                     />
             </div>
-            }
+            } */}
         </main>
     )
 }

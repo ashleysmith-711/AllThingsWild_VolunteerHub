@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.scss'
 import Header from './_components/header/Header'
 import Footer from './_components/footer/Footer'
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} `}>
         <div className='grid-wrapper'>
+          <Toaster />
           <Header />
           {children}
           <Footer />
