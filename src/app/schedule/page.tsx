@@ -1,14 +1,13 @@
 
 import styles from './Schedule.module.scss';
-import { getShifts } from '../services/data';
-import { Shift, ShiftTimes, VolunteerByTime } from '../types';
+import { Shift, VolunteerByTime } from '../types';
 import Loading from '../_components/Loading';
-import { filterShiftsToDate } from '../services/utils';
 import DailyScheduleSection from './DailyScheduleSection';
+import { getTodaysShiftsAction } from '../api/_actions';
 
 const getVolunteersByTime = (shifts: Shift[]) => {
     return shifts.reduce((acc: VolunteerByTime, shift: Shift) => {
-        acc[shift.shiftTime].push(shift.name)
+        acc[shift.shifttime].push({name: shift.name, id: shift.id})
         return acc;
     }, {
         morning: [],
@@ -18,18 +17,15 @@ const getVolunteersByTime = (shifts: Shift[]) => {
 }
 
 const Schedule = async () => {
-    // const allShifts: Shift[] = await getShifts();
-    // const shifts = filterShiftsToDate(allShifts);
+    const shifts = await getTodaysShiftsAction();
 
-    // const byTime = shifts ? getVolunteersByTime(shifts) : null;
-    // const date = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-    // const heading = `Today's Schedule (${date})`;
+    const byTime = shifts ? getVolunteersByTime(shifts) : null;
+    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    const heading = `Today's Schedule (${date})`;
     return (
         <main className={`constrict-content`}>
-            {/* <h1 className={styles.title}>{heading}</h1> */}
-            <h3>Coming Soon...</h3>
-            {/* {!byTime && <Loading />}
+            <h1 className={styles.title}>{heading}</h1>
+            {!byTime && <Loading />}
             {byTime && <div className={styles.container}>
                 <DailyScheduleSection 
                     imageUrl='/img/racoons-wink.jpeg'
@@ -50,7 +46,7 @@ const Schedule = async () => {
                     volunteers={byTime.evening}
                     />
             </div>
-            } */}
+            }
         </main>
     )
 }

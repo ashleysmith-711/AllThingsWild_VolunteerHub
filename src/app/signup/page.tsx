@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
 import { SignupFormSchema } from '../services/schema';
 import { useState } from 'react';
-import { addShift } from '../api/_actions';
+import { addShiftAction } from '../api/_actions';
 import toast from 'react-hot-toast';
 
 type ShiftSignupInputs = z.infer<typeof SignupFormSchema>
@@ -33,7 +33,7 @@ const Signup = () => {
   })
 
   const processForm: SubmitHandler<ShiftSignupInputs> = async (data) => {
-    const result = await addShift(data);
+    const result = await addShiftAction(data);
     if (result?.success) {
       const readableDate = new Date(data.shiftDate).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
       toast(`${data.name} is scheduled to volunteer on ${readableDate}`);

@@ -10,11 +10,22 @@
     display: flex;
     gap: 16px;
 
-    img {
+    .shiftImage {
         width: 100px;
         height: 100px;
         border-radius: 50%;
         object-fit: cover;
+    }
+
+}
+
+.volunteerLiContent {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+
+    .deleteIcon {
+        cursor: pointer;
     }
 }
 
@@ -33,15 +44,3 @@
     text-align: center;
 }
 
-.dateChanger {
-    margin: 1em auto;
-    text-align: center;
-    width: 400px;
-
-    input {
-        padding: .25em;
-        border-radius: 6px;
-        border: 1px solid v.$charcoal;
-        margin-bottom: 1em;
-    }
-}

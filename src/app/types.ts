@@ -5,10 +5,15 @@ export type Volunteer = {
     phone: string;
 }
 
+export type VolunteerWithId = {
+    name: string;
+    id: number;
+}
+
 export type VolunteerByTime = {
-    morning: string[], // names of volunteers in this time period
-    afternoon: string[],
-    evening: string[]
+    morning: VolunteerWithId[],
+    afternoon: VolunteerWithId[],
+    evening: VolunteerWithId[]
 }
 
 export enum ShiftTimes {
@@ -18,7 +23,9 @@ export enum ShiftTimes {
 }
 
 export type Shift = {
+    id: number,
     name: string,
-    date: Date,
-    shiftTime: ShiftTimes
+    email: string,
+    shiftdate: Date,
+    shifttime: ShiftTimes
 }
