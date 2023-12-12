@@ -3,7 +3,7 @@
 .section {
     background-color: v.$grey;
     padding: 1em;
-    width: 400px;
+    width: min(95%, 400px);
     margin: 1em auto;
     height: auto;
     border-radius: 1em;

@@ -21,7 +21,7 @@ const Signup = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ShiftSignupInputs>({
     defaultValues: {
       name: '',
@@ -43,9 +43,10 @@ const Signup = () => {
 
   return (
     <main className="constrict-content">
-      <h1 className={styles.title}>Signup Form</h1>
       <div className={styles.container}>
+        <h1 className={styles.title}>Signup Form</h1>
         <form onSubmit={handleSubmit(processForm)}>
+
           <input
             type="text"
             placeholder="Full Name"
@@ -113,7 +114,7 @@ const Signup = () => {
             />
           </fieldset>
 
-          <input type="submit" className={`fake-button ${Object.keys(errors).length > 0 ? styles.disabledBtn : ''}`} />
+          <input type="submit" className={`fake-button ${(Object.keys(errors).length > 0 || isSubmitting)? styles.disabledBtn : ''}`} />
         </form>
       </div>
 
